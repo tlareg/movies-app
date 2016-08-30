@@ -1,0 +1,52 @@
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.content {
+  margin: 0 auto;
+  width: 960px;
+  display: flex;
+  justify-content: center;
+  align-content: stretch;
+}
+
+.input-box {
+  margin: 10px;
+}
+
+.movie-list-view, 
+.movie-form-view {
+  margin: 20px;
+  padding: 30px;
+  border: 2px solid #000;
+}
+
+.movie-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-content: stretch;
+}
+
+.movie-list-item {
+  display: flex;
+  justify-content: space-between;
+  align-content: stretch;
+
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #000;
+}
+
+.movie-list-item__col {
+  padding: 15px;
+}
+
+.movie-list-item__label {
+  font-style: italic;
+}
+
+.action-btn {
+  margin: 2px 0;
+  min-width: 80px;
+}

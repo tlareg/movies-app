@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Movies App</title>
+  <link rel="stylesheet" type="text/css" href="main.css">
+</head>
+<body ng-app="moviesApp">
+
+  <div class="content">
+    <div class="movie-list-view" ng-controller="MovieListController as movieList">
+      <div class="movie-list-header">
+        <h1>Movie List</h1>
+        <button type="button"
+          style="margin-left: 20px;" 
+          ng-click="movieList.add()">Add movie</button>
+      </div>
+      <ul class="movie-list">
+        <li class="movie-list-item" ng-repeat="movie in movieList.movies">
+
+          <div class="movie-list-item__col">
+            <div class="movie-list-item__label">Title:</div> 
+            <div>{{movie.title}}</div>
+          </div>
+          <div class="movie-list-item__col">
+            <div class="movie-list-item__label">Year:</div> 
+            <div>{{movie.year}}</div>
+          </div>
+
+          <div class="movie-list-item__col" ng-if="movie.actors.length">
+            <div class="movie-list-item__label">Actors:</div>
+            <div>
+              <ul>
+                <li ng-repeat="actor in movie.actors">
+                  <div>{{actor.name}}</div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="movie-list-item__col">
+            <div>
+              <button class="action-btn" ng-click="movieList.edit(movie)">Edit</button>
+            </div>
+            <div>
+              <button class="action-btn" ng-click="movieList.remove(movie)">Remove</button>
+            </div>
+          </div>
+
+        </li>
+      </ul>
+    </div>
+
+    <div ng-controller="MovieFormController as movieForm">
+      <div class="movie-form-view" ng-if="movieForm.movie">
+        <h1>{{movieForm.movie.id ? 'Edit' : 'Add'}} Movie</h1>
+        <form novalidate action="">
+
+          <div class="input-box">
+            <label for="title">Title:</label>
+            <input type="text"
+                   name="title"
+                   ng-model="movieForm.movie.title">
+          </div>
+
+          <div class="input-box">
+            <label for="year">Year:</label>
+            <input type="text"
+                   name="year"
+                   ng-model="movieForm.movie.year">
+          </div>
+
+          <div class="input-box">
+            <label>Actors:</label>
+            <button type="button" ng-click="movieForm.appendActor(movieForm.movie)">Add</button>
+            <ul>
+              <li ng-repeat="actor in movieForm.movie.actors">
+                <div class="input-box">
+                  <label for="actorName">Name:</label>
+                  <input type="text"
+                         name="actorName"
+                         ng-model="actor.name">
+                  <button type="button" ng-click="movieForm.removeActor(movieForm.movie, actor)">remove</button>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <button type="button" ng-click="movieForm.submit();">Submit</button>
+          <button type="button" ng-click="movieForm.cancel();">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="../node_modules/angular/angular.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
